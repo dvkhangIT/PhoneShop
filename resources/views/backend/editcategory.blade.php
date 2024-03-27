@@ -15,11 +15,26 @@
                         Sửa danh mục
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <label>Tên danh mục:</label>
-                            <input type="text" name="name" class="form-control"
-                                placeholder="Tên danh mục...">
-                        </div>
+                        @include('errors.note')
+                        <form action="" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label>Tên danh mục:</label>
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ $cate->cate_name }}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="submit" value="Sửa"
+                                        class="form-control btn btn-primary ">
+                                </div>
+                                <div class="form-group">
+                                    <a href="{{ route('admin.category') }}"
+                                        class="form-control btn btn-danger">Hủy
+                                        bỏ</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

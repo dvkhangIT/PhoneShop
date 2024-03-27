@@ -30,6 +30,7 @@ Route::group(['namespace' => 'admin'], function () {
       Route::get('/', [CategoryController::class, 'getCate'])->name('admin.category');
       Route::post('/', [CategoryController::class, 'postCate']);
       Route::get('edit/{id}', [CategoryController::class, 'getEditCate'])->name('admin.category.edit');
+      Route::post('edit/{id}', [CategoryController::class, 'postEditCate']);
       Route::get('delete/{id}', [CategoryController::class, 'getDeleteCate'])->name('admin.category.delete');
     });
   });
