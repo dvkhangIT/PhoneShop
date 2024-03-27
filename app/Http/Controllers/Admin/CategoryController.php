@@ -28,9 +28,10 @@ class CategoryController extends Controller
     $category->save();
     return redirect()->route('admin.category');
   }
-  public function getDeleteCate()
+  public function getDeleteCate($id)
   {
-    return view('backend.editcategory');
+    Category::destroy($id);
+    return redirect()->back();
   }
   public function postCate(AddCategoryRequest $request)
   {

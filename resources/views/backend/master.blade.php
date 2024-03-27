@@ -17,7 +17,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Admin</a>
+                <a class="navbar-brand" href="{{ route('admin.home') }}">Admin</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle"
@@ -26,10 +26,10 @@
                             </svg>{{ Auth::user()->email }}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ asset('logout') }}"><svg
+                            <li><a href="{{ route('admin.logout') }}"><svg
                                         class="glyph stroked cancel">
                                         <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a></li>
+                                    </svg> Đăng xuất</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -41,7 +41,7 @@
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <ul class="nav menu">
             <li role="presentation" class="divider"></li>
-            <li class="active"><a href="index.html"><svg
+            <li class="active"><a href="{{ route('admin.home') }}"><svg
                         class="glyph stroked dashboard-dial">
                         <use xlink:href="#stroked-dashboard-dial"></use>
                     </svg> Trang chủ</a></li>

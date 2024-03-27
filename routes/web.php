@@ -21,11 +21,11 @@ Route::get('/', function () {
 });
 Route::group(['namespace' => 'admin'], function () {
   Route::group(['prefix' => 'login', 'middleware' => 'CheckLogedIn'], function () {
-    Route::get('/', [LoginController::class, 'getLogin']);
+    Route::get('/', [LoginController::class, 'getLogin'])->name('admin.login');
     Route::post('/', [LoginController::class, 'postLogin']);
   });
   Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogedOut'], function () {
-    Route::get('/home', [HomeController::class, 'getHome']);
+    Route::get('/home', [HomeController::class, 'getHome'])->name('admin.home');
     Route::group(['prefix' => 'category'], function () {
       Route::get('/', [CategoryController::class, 'getCate'])->name('admin.category');
       Route::post('/', [CategoryController::class, 'postCate']);
@@ -34,5 +34,5 @@ Route::group(['namespace' => 'admin'], function () {
       Route::get('delete/{id}', [CategoryController::class, 'getDeleteCate'])->name('admin.category.delete');
     });
   });
-  Route::get('/logout', [HomeController::class, 'getLogout']);
+  Route::get('/logout', [HomeController::class, 'getLogout'])->name('admin.logout');
 });

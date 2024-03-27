@@ -21,7 +21,7 @@ class LoginController extends Controller
       $remember = false;
     }
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
-      return redirect()->intended('admin/home');
+      return redirect()->route('admin.home');
     } else {
       return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng');
     }
