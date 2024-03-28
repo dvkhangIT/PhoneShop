@@ -45,7 +45,8 @@
                         class="glyph stroked dashboard-dial">
                         <use xlink:href="#stroked-dashboard-dial"></use>
                     </svg> Trang chủ</a></li>
-            <li><a href="widgets.html"><svg class="glyph stroked calendar">
+            <li><a href="{{ route('admin.product') }}"><svg
+                        class="glyph stroked calendar">
                         <use xlink:href="#stroked-calendar"></use>
                     </svg> Sản phẩm</a></li>
             <li><a href="{{ route('admin.category') }}"><svg

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::group(['namespace' => 'admin'], function () {
   });
   Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogedOut'], function () {
     Route::get('/home', [HomeController::class, 'getHome'])->name('admin.home');
+    // router category
     Route::group(['prefix' => 'category'], function () {
       Route::get('/', [CategoryController::class, 'getCate'])->name('admin.category');
       Route::post('/', [CategoryController::class, 'postCate']);
@@ -33,6 +35,17 @@ Route::group(['namespace' => 'admin'], function () {
       Route::post('edit/{id}', [CategoryController::class, 'postEditCate']);
       Route::get('delete/{id}', [CategoryController::class, 'getDeleteCate'])->name('admin.category.delete');
     });
+    Route::get('/logout', [HomeController::class, 'getLogout'])->name('admin.logout');
+    // router product
+    Route::group(['prefix' => 'product'], function () {
+      Route::get('/', [ProductController::class, 'getProduct'])->name('admin.product');
+      Route::post('/', [ProductController::class, 'postProduct']);
+      Route::get('add', [ProductController::class, 'getAddProduct'])->name('admin.product.add');
+      Route::post('add', [ProductController::class, 'postAddProduct']);
+      Route::post('/', [ProductController::class, 'postProduct']);
+      Route::get('edit/{id}', [ProductController::class, 'getEditProduct'])->name('admin.product.edit');
+      Route::post('edit/{id}', [ProductController::class, 'postEditProduct']);
+      Route::get('delete/{id}', [ProductController::class, 'getDeleteProduct'])->name('admin.product.delete');
+    });
   });
-  Route::get('/logout', [HomeController::class, 'getLogout'])->name('admin.logout');
 });
