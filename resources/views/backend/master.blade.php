@@ -9,7 +9,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="../../ckeditor/ckeditor.js"></script>
     <script src="js/lumino.glyphs.js"></script>
 </head>
 
@@ -65,6 +65,7 @@
     <script src="js/easypiechart.js"></script>
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/myscript.js"></script>
     <script>
         $('#calendar').datepicker({});
 

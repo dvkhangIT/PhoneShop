@@ -13,8 +13,10 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">Thêm sản phẩm</div>
+                @include('errors.note')
                 <div class="panel-body">
                     <form method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row" style="margin-bottom:40px">
                             <div class="col-xs-8">
                                 <div class="form-group">
@@ -28,7 +30,7 @@
                                         class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh sản phẩm</label>
+                                    <label for="img">Ảnh sản phẩm</label>
                                     <input required id="img" type="file"
                                         name="img" class="form-control hidden"
                                         onchange="changeImg(this)">
@@ -63,18 +65,25 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Miêu tả</label>
-                                    <textarea required name="description"></textarea>
+                                    <label>Mô tả</label>
+                                    <textarea class="ckeditor" required name="description"></textarea>
+                                    <script type="text/javascript">
+                                        var editor = CKEDITOR.replace('description', {
+                                            language: 'vi',
+                                            filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?Type=Images',
+                                            filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?Type=Flash',
+                                            filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                            filebrowserFlashUploadUrl: '../../public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                                        });
+                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <label>Danh mục</label>
                                     <select required name="cate" class="form-control">
-                                        <option value="1">iPhone</option>
-                                        <option value="2">Samsung</option>
-                                        <option value="3">Nokia</option>
-                                        <option value="4">HTC</option>
-                                        <option value="5">LG</option>
-                                        <option value="6">Sony</option>
+                                        @foreach ($categoryList as $category)
+                                            <option value=" {{ $category->cate_id }}">
+                                                {{ $category->cate_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
