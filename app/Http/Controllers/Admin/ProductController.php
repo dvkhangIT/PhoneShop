@@ -6,16 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
 use App\Models\Models\Category;
 use App\Models\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
   public function getProduct()
   {
-    return view('backend.product');
-  }
-  public function postProduct()
-  {
+    $data['productList'] = DB::table('tb_products')->join('tb_categories', 'tb_products.prod_cate', '=', 'tb_categories.cate_id')->orderBy('prod_id', 'desc')->get();
+    return view('backend.product', $data);
   }
   public function getAddProduct()
   {
@@ -49,7 +48,9 @@ class ProductController extends Controller
   public function postEditProduct()
   {
   }
-  public function getDeleteProduct()
+  public function getDeleteProduct($id)
   {
+    Product::destroy($id);
+    return back();
   }
 }
