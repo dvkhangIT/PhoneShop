@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-  return view('welcome');
-});
+// route user
+Route::get('/', [FrontendController::class, 'getHome']);
+// route admin
 Route::group(['namespace' => 'admin'], function () {
   Route::group(['prefix' => 'login', 'middleware' => 'CheckLogedIn'], function () {
     Route::get('/', [LoginController::class, 'getLogin'])->name('admin.login');
