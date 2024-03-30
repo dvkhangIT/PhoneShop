@@ -66,7 +66,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả</label>
-                                    <textarea class="ckeditor" required name="description"></textarea>
+                                    <textarea class="ckeditor" required name="description">
+                                    </textarea>
                                     <script type="text/javascript">
                                         var editor = CKEDITOR.replace('description', {
                                             language: 'vi',
@@ -87,7 +88,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Sản phẩm nổi bật</label><br>
+                                    <div>Sản phẩm nổi bật</div><br>
                                     Có: <input type="radio" name="featured"
                                         value="1">
                                     Không: <input type="radio" checked name="featured"

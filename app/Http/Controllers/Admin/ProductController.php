@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
 use App\Models\Models\Category;
 use App\Models\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -41,12 +42,33 @@ class ProductController extends Controller
     $request->img->storeAs('avatar', $filename);
     return back();
   }
-  public function getEditProduct()
+  public function getEditProduct($id)
   {
-    return view('backend.editproduct');
+    $data['product'] = Product::find($id);
+    $data['categoryList'] = Category::all();
+    return view('backend.editproduct', $data);
   }
-  public function postEditProduct()
+  public function postEditProduct(Request $request, $id)
   {
+    $product = new Product();
+    $arr['prod_name'] = $request->name;
+    $arr['prod_slug'] = Str::slug($request->name);
+    $arr['prod_accessories'] = $request->accessories;
+    $arr['prod_price'] = $request->price;
+    $arr['prod_warranty'] = $request->warranty;
+    $arr['prod_promotion'] = $request->promotion;
+    $arr['prod_condition'] = $request->condition;
+    $arr['prod_status'] = $request->status;
+    $arr['prod_description'] = $request->description;
+    $arr['prod_cate'] = $request->cate;
+    $arr['prod_featured'] = $request->featured;
+    if ($request->hasFile('img',)) {
+      $img = $request->img->getClientOriginalName();
+      $arr['prod_image'] = $img;
+      $request->img->storeAs('avatar', $img);
+    }
+    $product::where('prod_id', $id)->update($arr);
+    return redirect()->route('admin.product');
   }
   public function getDeleteProduct($id)
   {
