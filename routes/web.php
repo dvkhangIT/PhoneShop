@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 // route user
 Route::get('/', [FrontendController::class, 'getHome']);
+Route::get('detail/{id}/{slug}.html', [FrontendController::class, 'getDetail']);
 // route admin
 Route::group(['namespace' => 'admin'], function () {
   Route::group(['prefix' => 'login', 'middleware' => 'CheckLogedIn'], function () {
