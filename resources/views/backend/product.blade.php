@@ -45,7 +45,8 @@
                                                     class="btn btn-warning"><i
                                                         class="fa fa-pencil"
                                                         aria-hidden="true"></i> Sửa</a>
-                                                <a href="{{ route('admin.product.delete', ['id' => $product->prod_id]) }}"
+                                                <a onclick="return confirm('Bạn có muốn xóa?')"
+                                                    href="{{ route('admin.product.delete', ['id' => $product->prod_id]) }}"
                                                     class="btn btn-danger"><i
                                                         class="fa fa-trash"
                                                         aria-hidden="true"></i> Xóa</a>
