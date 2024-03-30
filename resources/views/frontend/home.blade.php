@@ -43,7 +43,10 @@
                             VNĐ
                         </p>
                         <div class="marsk">
-                            <a href="#">Xem chi tiết</a>
+                            <a
+                                href="{{ asset('detail/' . $item->prod_id . '/' . $item->prod_slug . '.html') }}">Xem
+                                chi
+                                tiết</a>
                         </div>
                     </div>
                 @endforeach

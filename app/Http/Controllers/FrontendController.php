@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Models\Category;
 use App\Models\Models\Product;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,7 @@ class FrontendController extends Controller
   {
     $data['featured'] = Product::where('prod_featured', '=', 1)->take(8)->orderBy('prod_id', 'desc')->get();
     $data['new'] = Product::orderBy('prod_id', 'desc')->take(8)->get();
+    $data['category'] = Category::all();
     return view('frontend.home', $data);
   }
   public function getDetail($id)

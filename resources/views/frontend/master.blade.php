@@ -43,7 +43,7 @@
             <div class="row">
                 <div id="logo" class="col-md-3 col-sm-12 col-xs-12">
                     <h1>
-                        <a href="#"><img src="img/home/logo.png"></a>
+                        <a href="{{ asset('/') }}"><img src="img/home/logo.png"></a>
                         <nav><a id="pull" class="btn btn-danger" href="#">
                                 <i class="fa fa-bars"></i>
                             </a></nav>
@@ -68,21 +68,10 @@
                 <div id="sidebar" class="col-md-3">
                     <nav id="menu">
                         <ul>
-                            <li class="menu-item">danh mục sản phẩm</li>
-                            <li class="menu-item"><a href="#"
-                                    title="">iPhone</a></li>
-                            <li class="menu-item"><a href="#"
-                                    title="">Samsung</a></li>
-                            <li class="menu-item"><a href="#"
-                                    title="">Sony</a></li>
-                            <li class="menu-item"><a href="#" title="">HTC</a>
-                            </li>
-                            <li class="menu-item"><a href="#" title="">LG</a>
-                            </li>
-                            <li class="menu-item"><a href="#"
-                                    title="">OPPO</a></li>
-                            <li class="menu-item"><a href="#"
-                                    title="">Blackberry</a></li>
+                            @foreach ($category as $item)
+                                <li class="menu-item"><a href="#"
+                                        title="">{{ $item->cate_name }}</a></li>
+                            @endforeach
                         </ul>
                         <!-- <a href="#" id="pull">Danh mục</a> -->
                     </nav>
@@ -122,13 +111,12 @@
                     <!-- main -->
                     <!-- phan slide la cac hieu ung chuyen dong su dung jquey -->
                     <div id="slider">
-                        <div id="demo" class="carousel slide"
-                            data-ride="carousel">
+                        <div id="demo" class="carousel slide" data-ride="carousel">
 
                             <!-- Indicators -->
                             <ul class="carousel-indicators">
-                                <li data-target="#demo" data-slide-to="0"
-                                    class="active"></li>
+                                <li data-target="#demo" data-slide-to="0" class="active">
+                                </li>
                                 <li data-target="#demo" data-slide-to="1"></li>
                                 <li data-target="#demo" data-slide-to="2"></li>
                             </ul>
