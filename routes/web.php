@@ -22,6 +22,7 @@ Route::get('/', [FrontendController::class, 'getHome']);
 Route::get('detail/{id}/{slug}.html', [FrontendController::class, 'getDetail']);
 Route::get('/category/{id}/{slug}.html', [FrontendController::class, 'getCategory']);
 Route::post('/detail/{id}/{slug}.html', [FrontendController::class, 'postComment']);
+Route::get('/search', [FrontendController::class, 'getSearch']);
 // route admin
 Route::group(['namespace' => 'admin'], function () {
   Route::group(['prefix' => 'login', 'middleware' => 'CheckLogedIn'], function () {

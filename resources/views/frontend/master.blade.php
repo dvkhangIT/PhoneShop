@@ -50,8 +50,11 @@
                     </h1>
                 </div>
                 <div id="search" class="col-md-7 col-sm-12 col-xs-12">
-                    <input type="text" name="text" value="Nhập từ khóa ...">
-                    <input type="submit" name="submit" value="Tìm Kiếm">
+                    <form action="{{ asset('search/') }}" method="get">
+                        <input type="text" name="result"
+                            placeholder="Nhập từ khóa ...">
+                        <input type="submit" name="submit" value="Tìm Kiếm">
+                    </form>
                 </div>
                 <div id="cart" class="col-md-2 col-sm-12 col-xs-12">
                     <a class="display" href="#">Giỏ hàng</a>
