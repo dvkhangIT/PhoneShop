@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models\Category;
+use App\Models\Models\Comment;
 use App\Models\Models\Product;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class FrontendController extends Controller
   public function getDetail($id)
   {
     $data['detail'] = Product::find($id);
+    $data['comments'] = Comment::where('com_product', $id)->get();
     return view('frontend.details', $data);
   }
   public function getCategory($id)
@@ -25,5 +27,15 @@ class FrontendController extends Controller
     $data['items'] = Product::where('prod_cate', $id)->orderBy('prod_id', 'desc')->paginate(2);
     $data['cateName'] = Category::find($id);
     return view('frontend.category', $data);
+  }
+  public function postComment(Request $request, $id)
+  {
+    $comment = new Comment();
+    $comment->com_name = $request->name;
+    $comment->com_email = $request->email;
+    $comment->com_content = $request->content;
+    $comment->com_product = $id;
+    $comment->save();
+    return back();
   }
 }

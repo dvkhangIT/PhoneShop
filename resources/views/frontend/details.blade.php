@@ -33,7 +33,8 @@
         <div id="comment">
             <h3>Bình luận</h3>
             <div class="col-md-9 comment">
-                <form>
+                <form method="post">
+                    @csrf
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input required type="email" class="form-control" id="email"
@@ -55,42 +56,18 @@
             </div>
         </div>
         <div id="comment-list">
-            <ul>
-                <li class="com-title">
-                    Vietpro Education
-                    <br>
-                    <span>2017-19-01 10:00:00</span>
-                </li>
-                <li class="com-details">
-                    HTC One X 32GB là sản phẩm đáng chờ đợi nhất trong năm
-                    nay, với cấu hình mạnh và giá thành tương đối mềm so
-                    với các dòng Smart Phone của các hãng khác
-                </li>
-            </ul>
-            <ul>
-                <li class="com-title">
-                    Vietpro Education
-                    <br>
-                    <span>2017-19-01 10:00:00</span>
-                </li>
-                <li class="com-details">
-                    HTC One X 32GB là sản phẩm đáng chờ đợi nhất trong năm
-                    nay, với cấu hình mạnh và giá thành tương đối mềm so
-                    với các dòng Smart Phone của các hãng khác
-                </li>
-            </ul>
-            <ul>
-                <li class="com-title">
-                    Vietpro Education
-                    <br>
-                    <span>2017-19-01 10:00:00</span>
-                </li>
-                <li class="com-details">
-                    HTC One X 32GB là sản phẩm đáng chờ đợi nhất trong năm
-                    nay, với cấu hình mạnh và giá thành tương đối mềm so
-                    với các dòng Smart Phone của các hãng khác
-                </li>
-            </ul>
+            @foreach ($comments as $comment)
+                <ul>
+                    <li class="com-title">
+                        {{ $comment->com_name }}
+                        <br>
+                        <span>{{ date('d/m/Y H:i', strtotime($comment->created_at)) }}</span>
+                    </li>
+                    <li class="com-details">
+                        {{ $comment->com_content }}
+                    </li>
+                </ul>
+            @endforeach
         </div>
     </div>
 @endsection
