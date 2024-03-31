@@ -69,7 +69,8 @@
                     <nav id="menu">
                         <ul>
                             @foreach ($category as $item)
-                                <li class="menu-item"><a href="#"
+                                <li class="menu-item"><a
+                                        href="{{ asset('category/' . $item->cate_id . '/' . $item->cate_slug . '.html') }}"
                                         title="">{{ $item->cate_name }}</a></li>
                             @endforeach
                         </ul>

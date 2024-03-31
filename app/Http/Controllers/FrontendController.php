@@ -20,4 +20,10 @@ class FrontendController extends Controller
     $data['detail'] = Product::find($id);
     return view('frontend.details', $data);
   }
+  public function getCategory($id)
+  {
+    $data['items'] = Product::where('prod_cate', $id)->orderBy('prod_id', 'desc')->paginate(2);
+    $data['cateName'] = Category::find($id);
+    return view('frontend.category', $data);
+  }
 }
