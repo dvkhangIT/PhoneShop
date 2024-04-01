@@ -27,6 +27,7 @@ Route::get('/search', [FrontendController::class, 'getSearch']);
 // route cart
 Route::prefix('cart')->group(function () {
   Route::get('add/{id}', [CartController::class, 'getAddCart'])->name('cart.add');
+  Route::get('delete/{id}', [CartController::class, 'getDeleteCart'])->name('cart.delete');
   Route::get('show', [CartController::class, 'getShowCart'])->name('cart.show');
 });
 // route admin

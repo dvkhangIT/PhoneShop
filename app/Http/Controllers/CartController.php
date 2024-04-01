@@ -20,7 +20,16 @@ class CartController extends Controller
   public function getShowCart()
   {
     $data['items'] = Cart::content();
-    $data['total'] = Cart::total();
+    $data['subtotal'] = Cart::subtotal();
     return view('frontend.cart', $data);
+  }
+  public function getDeleteCart($id)
+  {
+    if ($id == 'all') {
+      Cart::destroy();
+    } else {
+      Cart::remove($id);
+    }
+    return back();
   }
 }
