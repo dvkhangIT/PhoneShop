@@ -25,10 +25,9 @@ Route::get('/category/{id}/{slug}.html', [FrontendController::class, 'getCategor
 Route::post('/detail/{id}/{slug}.html', [FrontendController::class, 'postComment']);
 Route::get('/search', [FrontendController::class, 'getSearch']);
 // route cart
-// Route::group(['prefix' => 'cart'], function () {
-// });
 Route::prefix('cart')->group(function () {
   Route::get('add/{id}', [CartController::class, 'getAddCart'])->name('cart.add');
+  Route::get('show', [CartController::class, 'getShowCart'])->name('cart.show');
 });
 // route admin
 Route::group(['namespace' => 'admin'], function () {
