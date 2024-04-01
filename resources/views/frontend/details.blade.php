@@ -20,7 +20,10 @@
                     <p>Tình trạng: {{ $detail->prod_condition }}</p>
                     <p>Khuyến mại: {{ $detail->prod_promotion }}</p>
                     <p>Còn hàng: {{ $detail->prod_status == 1 ? 'Còn hàng' : 'Hết hàng' }}</p>
-                    <p class="add-cart text-center"><a href="#">Đặt hàng online</a></p>
+                    <p class="add-cart text-center"><a
+                            href="{{ route('cart.add', ['id' => $detail->prod_id]) }}">Đặt
+                            hàng
+                            online</a></p>
                 </div>
             </div>
         </div>
