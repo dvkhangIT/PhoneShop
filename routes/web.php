@@ -29,6 +29,7 @@ Route::prefix('cart')->group(function () {
   Route::get('add/{id}', [CartController::class, 'getAddCart'])->name('cart.add');
   Route::get('delete/{id}', [CartController::class, 'getDeleteCart'])->name('cart.delete');
   Route::get('show', [CartController::class, 'getShowCart'])->name('cart.show');
+  Route::get('update', [CartController::class, 'getUpdateCart'])->name('cart.update');
 });
 // route admin
 Route::group(['namespace' => 'admin'], function () {

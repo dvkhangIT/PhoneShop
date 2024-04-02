@@ -1,6 +1,19 @@
 @extends('frontend.master')
 @section('title', 'Giỏ hàng')
 @section('main')
+    <script>
+        function updateCart(qty, rowId) {
+            $.get(
+                "{{ route('cart.update') }}", {
+                    qty: qty,
+                    rowId: rowId
+                },
+                function() {
+                    location.reload()
+                }
+            );
+        }
+    </script>
     <link rel="stylesheet" href="css/cart.css">
     <div id="wrap-inner">
         @if (Cart::count() >= 1)
@@ -26,7 +39,8 @@
                                 <td>
                                     <div class="form-group">
                                         <input class="form-control" type="number"
-                                            value="{{ $item->qty }}">
+                                            value="{{ $item->qty }}"
+                                            onchange="updateCart(this.value,'{{ $item->rowId }}')">
                                     </div>
                                 </td>
                                 <td><span
