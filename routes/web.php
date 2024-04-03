@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // route user
-Route::get('/', [FrontendController::class, 'getHome']);
+Route::get('/', [FrontendController::class, 'getHome'])->name('home');
 Route::get('detail/{id}/{slug}.html', [FrontendController::class, 'getDetail']);
 Route::get('/category/{id}/{slug}.html', [FrontendController::class, 'getCategory']);
 Route::post('/detail/{id}/{slug}.html', [FrontendController::class, 'postComment']);
@@ -29,8 +29,10 @@ Route::prefix('cart')->group(function () {
   Route::get('add/{id}', [CartController::class, 'getAddCart'])->name('cart.add');
   Route::get('delete/{id}', [CartController::class, 'getDeleteCart'])->name('cart.delete');
   Route::get('show', [CartController::class, 'getShowCart'])->name('cart.show');
+  Route::post('show', [CartController::class, 'postComplete']);
   Route::get('update', [CartController::class, 'getUpdateCart'])->name('cart.update');
 });
+Route::get('complete', [CartController::class, 'getComplete']);
 // route admin
 Route::group(['namespace' => 'admin'], function () {
   Route::group(['prefix' => 'login', 'middleware' => 'CheckLogedIn'], function () {

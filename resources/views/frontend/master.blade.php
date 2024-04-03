@@ -57,8 +57,8 @@
                     </form>
                 </div>
                 <div id="cart" class="col-md-2 col-sm-12 col-xs-12">
-                    <a class="display" href="#">Giỏ hàng</a>
-                    <a href="#">{{ Cart::count() }}</a>
+                    <a class="display" href="{{ route('cart.show') }}">Giỏ hàng</a>
+                    <a href="{{ route('cart.show') }}">{{ Cart::count() }}</a>
                 </div>
             </div>
         </div>

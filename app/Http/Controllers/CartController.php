@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -35,5 +36,24 @@ class CartController extends Controller
   public function getUpdateCart(Request $request)
   {
     Cart::update($request->rowId, $request->qty);
+  }
+  public function postComplete(Request $request)
+  {
+    $data['info'] = $request->all();
+    $data['cart'] = Cart::content();
+    $data['subtotal'] = Cart::subtotal();
+    $email = $request->email;
+    Mail::send('frontend.email', $data, function ($message) use ($email) {
+      $message->from('khangduong.dev@gamil.com', 'Phone Shop');
+      $message->to($email, $email);
+      $message->cc('khangduong.dev@gamil.com', 'Phone Shop');
+      $message->subject('Xác nhận hóa đơn mua hàng');
+    });
+    Cart::destroy();
+    return redirect('complete');
+  }
+  public function getComplete()
+  {
+    return view('frontend.complete');
   }
 }
